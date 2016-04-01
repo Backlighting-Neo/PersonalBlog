@@ -30,6 +30,7 @@ date: 2016-02-02 11:52:00
 
 首先我们来看这样一段
 
+``` javascript
 	function foo() {
 	   setTimeout(function() {
 	      console.log("id:", this.id);
@@ -37,11 +38,13 @@ date: 2016-02-02 11:52:00
 	}
 
 	foo.call( { id : 1 } )
+```
 
 很显然，在100ms过后，console并不能输出我们所期待的正确的结果
 
 然而当我们使用箭头函数来完成这个过程的时候
 
+``` javascript
 	function foo() {
 	   setTimeout( () => {
 	      console.log("id:", this.id);
@@ -49,6 +52,7 @@ date: 2016-02-02 11:52:00
 	}
 
 	foo.call( { id: 1 } );
+```
 
 是可以按照预期的行为进行的，这正式得益于箭头函数保留了定义时的this，如果不使用箭头函数，也许
 

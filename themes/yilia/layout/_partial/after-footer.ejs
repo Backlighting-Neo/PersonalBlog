@@ -15,9 +15,22 @@
 		open_in_new: <%=theme.open_in_new%>
 	}
 </script>
+<%- js('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js') %>
 <%- js('https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
 <%- js('js/main') %>
-
+<script>
+	$('pre').each(function(index, element){
+		var result = element.children[0].className.replace('hljs','').replace(' ','');
+		switch(result){
+			case 'javascript':
+				result = 'JS';
+				break;
+		}
+		result=result.toUpperCase();
+		$(element).prepend('<b class="name">'+result+'</b>')
+	})
+	hljs.initHighlightingOnLoad();
+</script>
 
 <%- partial('google-analytics') %>
 
